@@ -127,12 +127,19 @@ export default function Dashboard() {
                 src={photoUrl} 
                 alt="Registered Identity Photo" 
                 className="candidate-photo-img" 
-                onError={() => setPhotoUrl(null)}
+                onError={() => {
+                  console.warn("Candidate photo failed to load:", photoUrl);
+                  setPhotoUrl(null);
+                }}
               />
             ) : (
-              <div className="candidate-photo-fallback">
-                <User size={42} className="text-slate-400" />
-              </div>
+              <Link 
+                to="/profile" 
+                className="candidate-photo-fallback flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity" 
+                title="No photo found. Click here to go to Profile and upload your photo"
+              >
+                <User size={38} className="text-indigo-400" />
+              </Link>
             )}
           </div>
 
