@@ -191,6 +191,38 @@ const startServer = async () => {
             } catch (seedErr) {
                 console.warn("Question seeding check warning:", seedErr.message);
             }
+
+            // Ensure standard administrator account exists on database startup
+            try {
+                const bcrypt = require("bcrypt");
+                const User = require("./models/User");
+                const adminEmail = "admin@vnrvjiet.in";
+                const existingAdmin = await User.findOne({ email: adminEmail });
+                if (!existingAdmin) {
+                    const passwordHash = await bcrypt.hash("Admin@2026!", 12);
+                    await User.create({
+                        name: "System Administrator",
+                        email: adminEmail,
+                        password: passwordHash,
+                        role: "admin",
+                        rollNumber: "ADMIN01",
+                        college: "VNRVJIET",
+                        course: "Administration",
+                        branch: "Management",
+                        year: "4",
+                        phone: "9999999999",
+                        isActive: true,
+                        accountStatus: "active"
+                    });
+                    console.log(`🛡️ Created default System Administrator account (${adminEmail})`);
+                } else if (existingAdmin.role !== "admin") {
+                    existingAdmin.role = "admin";
+                    await existingAdmin.save();
+                    console.log(`🛡️ Confirmed System Administrator role for (${adminEmail})`);
+                }
+            } catch (adminErr) {
+                console.warn("Admin account seeding notice:", adminErr.message);
+            }
         }
 
         server = primaryServer.listen(PORT, () => {
