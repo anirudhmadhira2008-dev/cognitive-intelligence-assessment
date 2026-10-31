@@ -194,7 +194,7 @@ const startServer = async () => {
 
             // Ensure standard administrator account exists on database startup
             try {
-                const bcrypt = require("bcrypt");
+                const bcrypt = require("bcryptjs");
                 const User = require("./models/User");
                 const adminEmail = "admin@vnrvjiet.in";
                 const existingAdmin = await User.findOne({ email: adminEmail });
