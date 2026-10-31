@@ -3,7 +3,18 @@
  * Features low-bandwidth resilience, offline response queue, and exponential backoff retry.
  */
 
-const BASE_URL = import.meta.env.VITE_API_URL || "";
+const getBaseUrl = () => {
+    if (import.meta.env.VITE_API_URL) {
+        return import.meta.env.VITE_API_URL;
+    }
+    // When deployed on Vercel or any remote host, connect to the Render backend service
+    if (typeof window !== "undefined" && window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
+        return "https://cognitive-intelligence-assessment.onrender.com";
+    }
+    return "";
+};
+
+const BASE_URL = getBaseUrl();
 
 // In-Memory & LocalStorage Offline Action Queue
 const QUEUE_STORAGE_KEY = "psy_assessment_offline_queue";

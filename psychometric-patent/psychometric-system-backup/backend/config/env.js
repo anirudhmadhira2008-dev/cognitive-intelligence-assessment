@@ -31,8 +31,16 @@ function loadEnvPolicy() {
         console.warn("⚠️ JWT_SECRET missing; using a development-only default. Never deploy this value.");
     }
 
-    const rawClientUrls = process.env.CLIENT_URL || "http://localhost:3000,http://localhost:5173";
+    const defaultOrigins = [
+        "https://cognitive-intelligence-assessment.vercel.app",
+        "http://localhost:3000",
+        "http://localhost:5173"
+    ];
+    const rawClientUrls = process.env.CLIENT_URL || defaultOrigins.join(",");
     const allowedOrigins = rawClientUrls.split(",").map((url) => url.trim()).filter(Boolean);
+    if (!allowedOrigins.includes("https://cognitive-intelligence-assessment.vercel.app")) {
+        allowedOrigins.push("https://cognitive-intelligence-assessment.vercel.app");
+    }
 
     return {
         nodeEnv,

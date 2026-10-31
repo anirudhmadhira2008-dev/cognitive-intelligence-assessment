@@ -69,7 +69,8 @@ app.use(
     cors({
         origin: (origin, callback) => {
             if (!origin) return callback(null, true);
-            if (envPolicy.allowedOrigins.includes(origin)) {
+            const isVercel = origin.endsWith(".vercel.app") || origin === "https://cognitive-intelligence-assessment.vercel.app";
+            if (envPolicy.allowedOrigins.includes(origin) || envPolicy.allowedOrigins.includes("*") || isVercel) {
                 return callback(null, true);
             }
             if (!envPolicy.isProd) {

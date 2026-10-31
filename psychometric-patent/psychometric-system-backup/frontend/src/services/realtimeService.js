@@ -6,7 +6,14 @@ export const connectSocket = (token) => {
     if (socket && socket.connected) return socket;
 
     const isSecure = window.location.protocol === "https:";
-    const socketUrl = import.meta.env.VITE_API_URL || window.location.origin;
+    const getSocketUrl = () => {
+        if (import.meta.env.VITE_API_URL) return import.meta.env.VITE_API_URL;
+        if (window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
+            return "https://cognitive-intelligence-assessment.onrender.com";
+        }
+        return window.location.origin;
+    };
+    const socketUrl = getSocketUrl();
 
     socket = io(socketUrl, {
         auth: { token: token || localStorage.getItem("token") },
