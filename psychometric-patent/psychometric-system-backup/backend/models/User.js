@@ -78,6 +78,11 @@ const userSchema = new mongoose.Schema(
             default: ""
         },
 
+        profilePhotoData: {
+            type: String,
+            default: ""
+        },
+
         isActive: {
             type: Boolean,
             default: true,

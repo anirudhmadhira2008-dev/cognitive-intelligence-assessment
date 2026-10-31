@@ -16,6 +16,52 @@ const getBaseUrl = () => {
 
 const BASE_URL = getBaseUrl();
 
+/**
+ * Resolves any photo reference (storage key, relative /api path, or data URI)
+ * into a fully-qualified, authenticated URL for rendering in <img> tags.
+ */
+export const resolvePhotoUrl = (photoValue) => {
+    if (!photoValue || typeof photoValue !== "string") return null;
+
+    const trimmed = photoValue.trim();
+    if (!trimmed) return null;
+
+    // 1. Data URI: return directly
+    if (trimmed.startsWith("data:image/")) {
+        return trimmed;
+    }
+
+    const token = typeof localStorage !== "undefined" ? localStorage.getItem("token") || "" : "";
+    const backendHost = BASE_URL;
+
+    // 2. Absolute URL (http:// or https://)
+    if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) {
+        if (token && !trimmed.includes("token=")) {
+            const sep = trimmed.includes("?") ? "&" : "?";
+            return `${trimmed}${sep}token=${encodeURIComponent(token)}`;
+        }
+        return trimmed;
+    }
+
+    // 3. Clean up relative path without duplicating /api/enrollment/reference-image/
+    let cleanPath = trimmed;
+    if (cleanPath.startsWith("/api/enrollment/reference-image/")) {
+        // already complete relative endpoint
+    } else if (cleanPath.startsWith("/api/")) {
+        // another API path
+    } else {
+        cleanPath = `/api/enrollment/reference-image/${cleanPath}`;
+    }
+
+    // Attach token parameter so GET request from <img src> succeeds through authMiddleware
+    if (token && !cleanPath.includes("token=")) {
+        const sep = cleanPath.includes("?") ? "&" : "?";
+        cleanPath = `${cleanPath}${sep}token=${encodeURIComponent(token)}`;
+    }
+
+    return `${backendHost}${cleanPath}`;
+};
+
 // In-Memory & LocalStorage Offline Action Queue
 const QUEUE_STORAGE_KEY = "psy_assessment_offline_queue";
 

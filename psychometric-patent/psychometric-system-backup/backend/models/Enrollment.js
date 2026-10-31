@@ -30,6 +30,7 @@ const enrollmentSchema = new mongoose.Schema({
         referenceImageId: { type: String, default: "" },
         secureStorageKey: { type: String, default: "" },
         referenceImage: { type: String, default: "" }, // Base64 or secure reference path
+        referenceImageData: { type: String, default: "" }, // Persistent base64 backup
         mimetype: { type: String, default: "image/jpeg" },
         size: { type: Number, default: 0 },
         uploadedAt: { type: Date, default: Date.now },

@@ -122,6 +122,7 @@ const register = async (req, res) => {
                 year: year ? year.trim() : "",
                 phone: phone ? phone.trim() : "",
                 profilePhoto: storedPhotoPath || rawPhoto || "",
+                profilePhotoData: rawPhoto || "",
                 isActive: true,
                 accountStatus: "active"
             });
@@ -139,6 +140,7 @@ const register = async (req, res) => {
                             referenceImage: storedPhotoPath || rawPhoto || "",
                             referenceImageId: `ref-${Date.now()}`
                         }),
+                        referenceImageData: rawPhoto || "",
                         consent: true,
                         consentTimestamp: new Date(),
                         enrolledAt: new Date(),
@@ -425,6 +427,32 @@ const updateProfile = async (req, res) => {
             if (year !== undefined) user.year = year.trim();
             if (phone !== undefined) user.phone = phone.trim();
 
+            if (req.body.profilePhoto && typeof req.body.profilePhoto === "string") {
+                const photoInput = req.body.profilePhoto;
+                try {
+                    const storeRes = await identityStorageService.storeReferencePhoto(photoInput);
+                    if (storeRes.success) {
+                        user.profilePhoto = `/api/enrollment/reference-image/${storeRes.secureStorageKey}`;
+                    } else {
+                        user.profilePhoto = photoInput;
+                    }
+                    user.profilePhotoData = photoInput;
+                    // Also update any active enrollment for this candidate
+                    await Enrollment.updateMany(
+                        { candidateId: user._id },
+                        { 
+                            $set: { 
+                                "identityEnrollment.referenceImage": user.profilePhoto,
+                                "identityEnrollment.referenceImageData": photoInput,
+                                "identityEnrollment.uploadedAt": new Date()
+                            } 
+                        }
+                    ).catch(() => {});
+                } catch (photoErr) {
+                    console.warn("Profile photo update warning:", photoErr.message);
+                }
+            }
+
             await user.save();
 
             return res.status(200).json({
@@ -440,7 +468,8 @@ const updateProfile = async (req, res) => {
                     course: user.course,
                     branch: user.branch,
                     year: user.year,
-                    phone: user.phone
+                    phone: user.phone,
+                    profilePhoto: user.profilePhoto
                 }
             });
         }

@@ -239,7 +239,30 @@ const getReferenceImage = async (req, res) => {
             }
         }
 
-        const buffer = await identityStorageService.getStoredReferenceBuffer(key);
+        let buffer = await identityStorageService.getStoredReferenceBuffer(key);
+        if (!buffer && req.app.locals.dbConnected) {
+            // Self-healing: Restore reference image from persistent MongoDB Atlas backup
+            let base64 = enrollment?.identityEnrollment?.referenceImageData;
+            if (!base64) {
+                const User = require("../models/User");
+                const matchedUser = await User.findOne({
+                    $or: [
+                        { profilePhoto: `/api/enrollment/reference-image/${key}` },
+                        { profilePhoto: key },
+                        { _id: req.user.id }
+                    ]
+                });
+                base64 = matchedUser?.profilePhotoData;
+            }
+            if (base64 && typeof base64 === "string") {
+                const cleanBase64 = base64.replace(/^data:image\/\w+;base64,/, "");
+                buffer = Buffer.from(cleanBase64, "base64");
+                // Cache back to disk
+                const filePath = path.join(identityStorageService.storageDir, key);
+                fs.promises.writeFile(filePath, buffer).catch(() => {});
+            }
+        }
+
         if (!buffer) {
             return res.status(404).json({ success: false, message: "Reference image file not found" });
         }

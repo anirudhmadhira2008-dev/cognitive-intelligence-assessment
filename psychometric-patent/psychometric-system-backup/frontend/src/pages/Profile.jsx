@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import api from "../api/apiClient";
+import api, { resolvePhotoUrl } from "../api/apiClient";
 import { getUser } from "../services/authService";
 import { 
   User, 
@@ -16,7 +16,8 @@ import {
   Phone, 
   Mail, 
   Loader2, 
-  KeyRound 
+  KeyRound,
+  Camera 
 } from "lucide-react";
 
 export default function Profile() {
@@ -34,7 +35,7 @@ export default function Profile() {
     profilePhoto: initialUser.profilePhoto || null
   });
 
-  const [photoUrl, setPhotoUrl] = useState(null);
+  const [photoUrl, setPhotoUrl] = useState(() => resolvePhotoUrl(initialUser.profilePhoto));
 
   const [passwordForm, setPasswordForm] = useState({
     currentPassword: "",
@@ -67,8 +68,19 @@ export default function Profile() {
           }));
 
           if (res.user.profilePhoto) {
-            const token = localStorage.getItem("token") || "";
-            setPhotoUrl(`/api/enrollment/reference-image/${res.user.profilePhoto}?token=${encodeURIComponent(token)}`);
+            setPhotoUrl(resolvePhotoUrl(res.user.profilePhoto));
+          } else {
+            api.enrollment.getMyEnrollments()
+              .then((enrRes) => {
+                if (enrRes?.enrollments && enrRes.enrollments.length > 0) {
+                  const enr = enrRes.enrollments[0]?.identityEnrollment;
+                  const photoRef = enr?.secureStorageKey || enr?.referenceImage;
+                  if (photoRef) {
+                    setPhotoUrl(resolvePhotoUrl(photoRef));
+                  }
+                }
+              })
+              .catch(() => {});
           }
 
           localStorage.setItem("user", JSON.stringify(res.user));
@@ -76,6 +88,34 @@ export default function Profile() {
       })
       .catch(() => {});
   }, []);
+
+  const handlePhotoChange = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (!file.type.startsWith("image/")) {
+      return setProfileMsg({ type: "error", text: "Please select an image file (JPEG, PNG, WEBP)." });
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      return setProfileMsg({ type: "error", text: "Image file exceeds 5MB size limit." });
+    }
+
+    const reader = new FileReader();
+    reader.onload = async (ev) => {
+      const base64 = ev.target.result;
+      setPhotoUrl(base64);
+      try {
+        const res = await api.auth.updateProfile({ profilePhoto: base64 });
+        if (res?.user) {
+          setProfile((p) => ({ ...p, profilePhoto: res.user.profilePhoto }));
+          localStorage.setItem("user", JSON.stringify(res.user));
+        }
+        setProfileMsg({ type: "success", text: "Reference identity photo updated successfully." });
+      } catch (err) {
+        setProfileMsg({ type: "error", text: err.message || "Failed to update profile photo." });
+      }
+    };
+    reader.readAsDataURL(file);
+  };
 
   const handleProfileSubmit = async (e) => {
     e.preventDefault();
@@ -135,17 +175,46 @@ export default function Profile() {
       {/* Sleek Hero Banner */}
       <div className="profile-hero-banner">
         <div className="profile-hero-left">
-          <div className="profile-avatar-frame">
+          <div className="profile-avatar-frame" style={{ position: "relative" }}>
             {photoUrl ? (
               <img 
                 src={photoUrl} 
                 alt={profile.name || "Candidate"} 
                 className="profile-avatar-img"
-                onError={() => setPhotoUrl(null)}
+                onError={() => {
+                  console.warn("Avatar failed to load:", photoUrl);
+                  setPhotoUrl(null);
+                }}
               />
             ) : (
               <span className="profile-avatar-initials">{getInitials(profile.name)}</span>
             )}
+            <label 
+              style={{
+                position: "absolute",
+                bottom: "-2px",
+                right: "-2px",
+                background: "#4f46e5",
+                color: "#ffffff",
+                padding: "5px",
+                borderRadius: "50%",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                boxShadow: "0 2px 5px rgba(0,0,0,0.3)",
+                border: "2px solid #1e1b4b"
+              }}
+              title="Update reference photo"
+            >
+              <Camera size={13} />
+              <input 
+                type="file" 
+                accept="image/jpeg,image/png,image/webp" 
+                onChange={handlePhotoChange} 
+                style={{ display: "none" }} 
+              />
+            </label>
           </div>
           <div className="profile-hero-info">
             <h1>{profile.name || "Candidate Profile"}</h1>

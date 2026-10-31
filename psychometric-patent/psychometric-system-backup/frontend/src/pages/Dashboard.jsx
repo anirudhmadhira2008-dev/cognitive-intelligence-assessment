@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import api from "../api/apiClient";
+import api, { resolvePhotoUrl } from "../api/apiClient";
 import { getUser } from "../services/authService";
 import { 
   Brain, 
@@ -29,8 +29,8 @@ export default function Dashboard() {
 
   // Identity Photo State
   const [enrollment, setEnrollment] = useState(null);
-  const [photoUrl, setPhotoUrl] = useState(null);
-  const [photoLoading, setPhotoLoading] = useState(true);
+  const [photoUrl, setPhotoUrl] = useState(() => resolvePhotoUrl(user?.profilePhoto));
+  const [photoLoading, setPhotoLoading] = useState(!user?.profilePhoto);
 
   useEffect(() => {
     const fetchHistory = async () => {
@@ -50,7 +50,6 @@ export default function Dashboard() {
     const fetchCandidateEnrollmentAndPhoto = async () => {
       setPhotoLoading(true);
       try {
-        const token = localStorage.getItem("token") || "";
         const res = await api.enrollment.getMyEnrollments();
         let loadedUrl = null;
 
@@ -61,24 +60,23 @@ export default function Dashboard() {
           const storageKey = activeEnr.identityEnrollment?.secureStorageKey;
           const refImg = activeEnr.identityEnrollment?.referenceImage;
           if (storageKey) {
-            loadedUrl = `/api/enrollment/reference-image/${storageKey}?token=${encodeURIComponent(token)}`;
+            loadedUrl = resolvePhotoUrl(storageKey);
           } else if (refImg) {
-            loadedUrl = refImg.startsWith("/api/") ? `${refImg}?token=${encodeURIComponent(token)}` : refImg;
+            loadedUrl = resolvePhotoUrl(refImg);
           }
         }
 
         if (!loadedUrl && user?.profilePhoto) {
-          const pPhoto = user.profilePhoto;
-          loadedUrl = pPhoto.startsWith("/api/") ? `${pPhoto}?token=${encodeURIComponent(token)}` : pPhoto;
+          loadedUrl = resolvePhotoUrl(user.profilePhoto);
         }
 
-        setPhotoUrl(loadedUrl);
+        if (loadedUrl) {
+          setPhotoUrl(loadedUrl);
+        }
       } catch (err) {
         console.warn("Error loading registered identity photo:", err.message);
         if (user?.profilePhoto) {
-          const token = localStorage.getItem("token") || "";
-          const pPhoto = user.profilePhoto;
-          setPhotoUrl(pPhoto.startsWith("/api/") ? `${pPhoto}?token=${encodeURIComponent(token)}` : pPhoto);
+          setPhotoUrl(resolvePhotoUrl(user.profilePhoto));
         }
       } finally {
         setPhotoLoading(false);

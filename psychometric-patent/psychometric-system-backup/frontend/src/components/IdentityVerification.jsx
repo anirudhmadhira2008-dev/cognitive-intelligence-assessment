@@ -13,7 +13,7 @@ import {
   User,
   ScanFace
 } from "lucide-react";
-import api from "../api/apiClient";
+import api, { resolvePhotoUrl } from "../api/apiClient";
 import { getUser } from "../services/authService";
 import { analyzeFrameForObjects } from "../utils/prohibitedObjectDetector";
 import { extractFaceGeometry, compareFaceGeometries } from "../utils/faceBiometrics";
@@ -50,39 +50,31 @@ export default function IdentityVerification({ onVerified, onBack }) {
     async function loadEnrollmentAndPhoto() {
       try {
         let photoUrl = "";
-        const token = localStorage.getItem("token") || "";
         const res = await api.enrollment.getMyEnrollments();
         if (res?.enrollments && res.enrollments.length > 0) {
           const firstEnrollment = res.enrollments[0];
           setSelectedEnrollmentId(firstEnrollment._id);
           const storageKey = firstEnrollment.identityEnrollment?.secureStorageKey;
+          const refImg = firstEnrollment.identityEnrollment?.referenceImage;
           if (storageKey) {
-            photoUrl = `/api/enrollment/reference-image/${storageKey}?token=${encodeURIComponent(token)}`;
-          } else if (firstEnrollment.identityEnrollment?.referenceImage) {
-            photoUrl = firstEnrollment.identityEnrollment.referenceImage;
+            photoUrl = resolvePhotoUrl(storageKey);
+          } else if (refImg) {
+            photoUrl = resolvePhotoUrl(refImg);
           }
         }
 
         // Fallback to user profilePhoto
         if (!photoUrl && currentUser?.profilePhoto) {
-          photoUrl = currentUser.profilePhoto;
+          photoUrl = resolvePhotoUrl(currentUser.profilePhoto);
         }
 
         if (photoUrl) {
-          if (photoUrl.startsWith("/api/") && !photoUrl.includes("token=")) {
-            photoUrl = `${photoUrl}?token=${encodeURIComponent(token)}`;
-          }
           setReferencePhoto(photoUrl);
         }
       } catch (err) {
         console.warn("Could not load enrollments:", err.message);
         if (currentUser?.profilePhoto) {
-          const token = localStorage.getItem("token") || "";
-          let photoUrl = currentUser.profilePhoto;
-          if (photoUrl.startsWith("/api/") && !photoUrl.includes("token=")) {
-            photoUrl = `${photoUrl}?token=${encodeURIComponent(token)}`;
-          }
-          setReferencePhoto(photoUrl);
+          setReferencePhoto(resolvePhotoUrl(currentUser.profilePhoto));
         }
       }
     }
