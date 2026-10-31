@@ -273,10 +273,23 @@ export default function IdentityVerification({ onVerified, onBack }) {
       console.warn("Frame capture warning:", cErr.message);
     }
 
-    const enrollmentId = selectedEnrollmentId || "demo-enrollment-id";
+    let enrollmentId = selectedEnrollmentId;
+    if (!enrollmentId) {
+      try {
+        const enrRes = await api.enrollment.getMyEnrollments();
+        if (enrRes?.enrollments && enrRes.enrollments.length > 0) {
+          enrollmentId = enrRes.enrollments[0]._id;
+          setSelectedEnrollmentId(enrollmentId);
+        }
+      } catch (enrErr) {
+        console.warn("Enrollment ID bootstrap notice:", enrErr.message);
+      }
+    }
+
+    const finalEnrollmentId = enrollmentId || "current";
 
     try {
-      const response = await api.enrollment.verifyIdentity(enrollmentId, {
+      const response = await api.enrollment.verifyIdentity(finalEnrollmentId, {
         liveImage,
         livenessScore: 0.92,
         faceCount: faces || 1,
@@ -289,7 +302,7 @@ export default function IdentityVerification({ onVerified, onBack }) {
 
       if (response.success && response.verificationToken) {
         onVerified({
-          enrollmentId,
+          enrollmentId: response.enrollmentId || finalEnrollmentId,
           verificationToken: response.verificationToken,
           faceCount: faces || 1,
           confidence: response.matchScore || matchScore || 95,
