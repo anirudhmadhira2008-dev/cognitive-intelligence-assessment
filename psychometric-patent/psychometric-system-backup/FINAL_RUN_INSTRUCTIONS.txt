@@ -1,0 +1,23 @@
+FINAL SUBMISSION BUILD
+
+1) Backend
+   cd backend
+   npm install
+   npm run dev
+
+   Expected:
+   Server running on port 5000
+   Mode: MongoDB OR Demo fallback
+
+2) Frontend
+   cd frontend
+   npm install
+   npm start
+
+3) Demo flow
+   Register -> Login -> Dashboard -> Instructions -> Face Check -> MCQ -> Voice -> Results -> Feedback
+
+IMPORTANT
+- MongoDB is optional for the demo. If Atlas is unavailable, registration/login/results/feedback use safe demo fallbacks.
+- Camera and microphone require browser permission.
+- Use Chrome/Edge on localhost.

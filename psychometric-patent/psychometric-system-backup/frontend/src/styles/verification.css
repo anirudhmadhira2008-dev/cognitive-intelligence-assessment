@@ -1,0 +1,490 @@
+/* ==========================================================================
+   DIGITAL SIGNATURE VERIFICATION PORTAL STYLES
+   Modern Dark SaaS Theme (Charcoal / Navy / Emerald / Red)
+   ========================================================================== */
+
+.verify-portal-wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+  width: 100%;
+}
+
+/* Breadcrumb & Header */
+.verify-breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #94a3b8;
+  margin-bottom: 16px;
+}
+
+.verify-breadcrumb a {
+  color: #818cf8;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.verify-breadcrumb a:hover {
+  color: #a5b4fc;
+}
+
+.verify-header-block {
+  margin-bottom: 32px;
+}
+
+.verify-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  background: rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  color: #818cf8;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.verify-main-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #f8fafc;
+  letter-spacing: -0.02em;
+  margin: 0 0 6px 0;
+}
+
+.verify-main-subtitle {
+  font-size: 14px;
+  color: #94a3b8;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Verification Card */
+.verify-main-card {
+  background: #111827;
+  border: 1px solid #1e293b;
+  border-radius: 14px;
+  padding: 32px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  margin-bottom: 28px;
+}
+
+/* Segmented Tabs Switcher */
+.verify-tabs-bar {
+  display: flex;
+  gap: 8px;
+  padding: 4px;
+  background: #0d131f;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  margin-bottom: 28px;
+}
+
+.verify-tab-button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.verify-tab-button.active {
+  background: #1e293b;
+  color: #f8fafc;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.verify-tab-button:hover:not(.active) {
+  color: #e2e8f0;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Method 1: ID Input Form */
+.verify-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.verify-input-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+.input-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon-left {
+  position: absolute;
+  left: 14px;
+  color: #64748b;
+  pointer-events: none;
+}
+
+.verify-text-input {
+  width: 100%;
+  padding: 12px 14px 12px 42px;
+  background: #0b0f19;
+  border: 1px solid #28354c;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #f8fafc;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.verify-text-input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.verify-text-input::placeholder {
+  color: #475569;
+}
+
+/* Method 2: Drag and Drop Upload Area */
+.upload-dropzone-box {
+  border: 2px dashed #28354c;
+  border-radius: 12px;
+  padding: 32px 20px;
+  text-align: center;
+  background: #0d131f;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.upload-dropzone-box:hover {
+  border-color: #6366f1;
+  background: #111827;
+}
+
+.dropzone-icon-wrap {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 12px;
+  border-radius: 12px;
+  background: #1a2336;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #818cf8;
+}
+
+.dropzone-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin: 0 0 4px 0;
+}
+
+.dropzone-subtext {
+  font-size: 12px;
+  color: #64748b;
+  margin: 0 0 16px 0;
+}
+
+.custom-file-input-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  color: #f8fafc;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.custom-file-input-btn:hover {
+  background: #283548;
+}
+
+.file-chosen-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: #162032;
+  border: 1px solid #28354c;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+
+.file-info-col {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #e2e8f0;
+}
+
+.file-size-tag {
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+.btn-remove-file {
+  background: transparent;
+  border: none;
+  color: #f87171;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.btn-remove-file:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* Paste JSON Textarea */
+.paste-json-toggle {
+  font-size: 12px;
+  color: #818cf8;
+  cursor: pointer;
+  margin-bottom: 8px;
+  display: inline-block;
+  font-weight: 600;
+}
+
+.json-input-textarea {
+  width: 100%;
+  height: 140px;
+  background: #0b0f19;
+  border: 1px solid #28354c;
+  border-radius: 8px;
+  padding: 12px;
+  font-family: monospace;
+  font-size: 12px;
+  color: #cbd5e1;
+  resize: vertical;
+  outline: none;
+  margin-bottom: 20px;
+}
+
+.json-input-textarea:focus {
+  border-color: #6366f1;
+}
+
+/* Primary Verification Action Button */
+.verify-submit-btn {
+  width: 100%;
+  padding: 12px 20px;
+  background: #6366f1;
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.verify-submit-btn:hover {
+  background: #4f46e5;
+}
+
+.verify-submit-btn:active {
+  transform: translateY(1px);
+}
+
+.verify-submit-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Error Banner */
+.verify-error-banner {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: #f87171;
+  font-size: 13px;
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ==========================================================================
+   VERIFICATION RESULT PANELS
+   ========================================================================== */
+.verify-result-panel {
+  border-radius: 12px;
+  padding: 24px;
+  margin-top: 28px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* VALID STATUS */
+.verify-result-panel.valid {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+.result-status-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.result-icon-badge.valid {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.result-heading-text {
+  font-size: 18px;
+  font-weight: 800;
+  color: #f8fafc;
+  margin: 0;
+}
+
+.result-message-text {
+  font-size: 13px;
+  color: #cbd5e1;
+  margin: 0 0 18px 0;
+  line-height: 1.5;
+}
+
+/* Metadata Table inside Result Card */
+.crypto-details-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 12px;
+}
+
+.crypto-details-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.crypto-details-table tr:last-child td {
+  border-bottom: none;
+}
+
+.crypto-label-cell {
+  color: #94a3b8;
+  font-weight: 600;
+  width: 35%;
+}
+
+.crypto-value-cell {
+  color: #f1f5f9;
+  font-family: monospace;
+  word-break: break-all;
+}
+
+/* TAMPERED / INVALID STATUS */
+.verify-result-panel.tampered {
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+}
+
+.result-icon-badge.tampered {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* UNKNOWN REPORT / KEY STATUS */
+.verify-result-panel.unknown {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+.result-icon-badge.unknown {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   ABOUT DIGITAL VERIFICATION TRUST SECTION
+   ========================================================================== */
+.verify-trust-card {
+  background: #111827;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  padding: 20px 24px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.trust-card-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: #1a2234;
+  color: #818cf8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.trust-card-body h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin: 0 0 6px 0;
+}
+
+.trust-card-body p {
+  font-size: 12px;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin: 0;
+}

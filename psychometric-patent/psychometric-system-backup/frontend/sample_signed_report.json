@@ -1,0 +1,273 @@
+{
+  "_id": "6ada3d14ab35005720c1051e",
+  "reportId": "REP-2026-53B0CC42",
+  "userId": "6ada3d14ab35005720c10514",
+  "sessionId": "6ada3d14ab35005720c10516",
+  "resultId": "6ada3d14ab35005720c1051d",
+  "candidateReference": "Alex Rivera (ID-VERIFIED)",
+  "methodologyVersion": "2.0.0-psychometric-patent",
+  "scoringVersion": "2026.1",
+  "overallScore": 77,
+  "totalAvailableScore": 100,
+  "overallPercentage": 77,
+  "scoreBreakdown": {
+    "knowledgeScore": 67,
+    "reasoningScore": 64,
+    "communicationScore": 75,
+    "confidenceScore": 85,
+    "integrityScore": 100,
+    "adaptabilityScore": 59,
+    "cognitiveIndex": 66,
+    "readinessIndex": 77,
+    "learningPotential": 61
+  },
+  "difficultyBreakdown": {
+    "easy": {
+      "earned": 20,
+      "available": 20,
+      "percentage": 100
+    },
+    "medium": {
+      "earned": 0,
+      "available": 20,
+      "percentage": 0
+    },
+    "hard": {
+      "earned": 0,
+      "available": 0,
+      "percentage": null
+    }
+  },
+  "competencyScores": {
+    "Critical thinking": {
+      "earned": 0,
+      "available": 0,
+      "percentage": null,
+      "questionsCount": 0,
+      "_id": "6ada3d14ab35005720c1051f"
+    },
+    "Problem-solving": {
+      "earned": 20,
+      "available": 40,
+      "percentage": 50,
+      "questionsCount": 3,
+      "_id": "6ada3d14ab35005720c10520"
+    },
+    "Situational judgment": {
+      "earned": 0,
+      "available": 0,
+      "percentage": null,
+      "questionsCount": 0,
+      "_id": "6ada3d14ab35005720c10521"
+    },
+    "Communication": {
+      "earned": 75,
+      "available": 100,
+      "percentage": 75,
+      "questionsCount": 1,
+      "_id": "6ada3d14ab35005720c10522"
+    },
+    "Adaptability": {
+      "earned": 0,
+      "available": 0,
+      "percentage": null,
+      "questionsCount": 0,
+      "_id": "6ada3d14ab35005720c10523"
+    },
+    "Technical judgment": {
+      "earned": 0,
+      "available": 0,
+      "percentage": null,
+      "questionsCount": 0,
+      "_id": "6ada3d14ab35005720c10524"
+    },
+    "Ethical decision-making": {
+      "earned": 0,
+      "available": 0,
+      "percentage": null,
+      "questionsCount": 0,
+      "_id": "6ada3d14ab35005720c10525"
+    },
+    "Prioritization": {
+      "earned": 0,
+      "available": 0,
+      "percentage": null,
+      "questionsCount": 0,
+      "_id": "6ada3d14ab35005720c10526"
+    },
+    "Teamwork": {
+      "earned": 0,
+      "available": 0,
+      "percentage": null,
+      "questionsCount": 0,
+      "_id": "6ada3d14ab35005720c10527"
+    },
+    "Root-cause analysis": {
+      "earned": 0,
+      "available": 0,
+      "percentage": null,
+      "questionsCount": 0,
+      "_id": "6ada3d14ab35005720c10528"
+    }
+  },
+  "strengths": [
+    "Integrity",
+    "Confidence",
+    "Communication"
+  ],
+  "areasForImprovement": [
+    "Adaptability",
+    "Reasoning"
+  ],
+  "recommendations": [
+    "Review targeted competency gaps highlighted in the breakdown.",
+    "Practice hard-difficulty cognitive challenges to broaden adaptability range.",
+    "Maintain verified integrity practices in collaborative engineering workflows."
+  ],
+  "limitations": [
+    "This evaluation represents rules-based educational and professional interview-readiness metrics in engineering domains.",
+    "This report is NOT a clinical, medical, or psychiatric diagnostic evaluation.",
+    "Scoring is server-authoritative and derived deterministically from persisted responses and authenticated proctoring telemetry.",
+    "Cryptographic digital signature guarantees that the report data has not been altered since issuance."
+  ],
+  "disclaimers": [
+    "This evaluation represents rules-based educational and professional interview-readiness metrics in engineering domains.",
+    "This report is NOT a clinical, medical, or psychiatric diagnostic evaluation.",
+    "Scoring is server-authoritative and derived deterministically from persisted responses and authenticated proctoring telemetry.",
+    "Cryptographic digital signature guarantees that the report data has not been altered since issuance."
+  ],
+  "status": "signed",
+  "signedPayload": {
+    "reportId": "REP-2026-53B0CC42",
+    "sessionId": "6ada3d14ab35005720c10516",
+    "candidateReference": "Alex Rivera (ID-VERIFIED)",
+    "methodologyVersion": "2.0.0-psychometric-patent",
+    "scoringVersion": "2026.1",
+    "overallScore": 77,
+    "totalAvailableScore": 100,
+    "overallPercentage": 77,
+    "scoreBreakdown": {
+      "knowledgeScore": 67,
+      "reasoningScore": 64,
+      "communicationScore": 75,
+      "confidenceScore": 85,
+      "integrityScore": 100,
+      "adaptabilityScore": 59,
+      "cognitiveIndex": 66,
+      "readinessIndex": 77,
+      "learningPotential": 61
+    },
+    "difficultyBreakdown": {
+      "easy": {
+        "earned": 20,
+        "available": 20,
+        "percentage": 100,
+        "count": 2
+      },
+      "medium": {
+        "earned": 0,
+        "available": 20,
+        "percentage": 0,
+        "count": 1
+      },
+      "hard": {
+        "earned": 0,
+        "available": 0,
+        "percentage": null,
+        "count": 0
+      }
+    },
+    "competencyScores": {
+      "Critical thinking": {
+        "earned": 0,
+        "available": 0,
+        "percentage": null,
+        "questionsCount": 0
+      },
+      "Problem-solving": {
+        "earned": 20,
+        "available": 40,
+        "percentage": 50,
+        "questionsCount": 3
+      },
+      "Situational judgment": {
+        "earned": 0,
+        "available": 0,
+        "percentage": null,
+        "questionsCount": 0
+      },
+      "Communication": {
+        "earned": 75,
+        "available": 100,
+        "percentage": 75,
+        "questionsCount": 1
+      },
+      "Adaptability": {
+        "earned": 0,
+        "available": 0,
+        "percentage": null,
+        "questionsCount": 0
+      },
+      "Technical judgment": {
+        "earned": 0,
+        "available": 0,
+        "percentage": null,
+        "questionsCount": 0
+      },
+      "Ethical decision-making": {
+        "earned": 0,
+        "available": 0,
+        "percentage": null,
+        "questionsCount": 0
+      },
+      "Prioritization": {
+        "earned": 0,
+        "available": 0,
+        "percentage": null,
+        "questionsCount": 0
+      },
+      "Teamwork": {
+        "earned": 0,
+        "available": 0,
+        "percentage": null,
+        "questionsCount": 0
+      },
+      "Root-cause analysis": {
+        "earned": 0,
+        "available": 0,
+        "percentage": null,
+        "questionsCount": 0
+      }
+    },
+    "strengths": [
+      "Integrity",
+      "Confidence",
+      "Communication"
+    ],
+    "areasForImprovement": [
+      "Adaptability",
+      "Reasoning"
+    ],
+    "recommendations": [
+      "Review targeted competency gaps highlighted in the breakdown.",
+      "Practice hard-difficulty cognitive challenges to broaden adaptability range.",
+      "Maintain verified integrity practices in collaborative engineering workflows."
+    ],
+    "limitations": [
+      "This evaluation represents rules-based educational and professional interview-readiness metrics in engineering domains.",
+      "This report is NOT a clinical, medical, or psychiatric diagnostic evaluation.",
+      "Scoring is server-authoritative and derived deterministically from persisted responses and authenticated proctoring telemetry.",
+      "Cryptographic digital signature guarantees that the report data has not been altered since issuance."
+    ],
+    "issuedAt": "2026-10-22T16:43:00.959Z"
+  },
+  "canonicalHash": "ba5e709ca206ab4c047bb576a54302cbb500d337a85eba17d398ccc8281bfeca",
+  "signature": "ftceFYWOUuPyOzWyXDK6VBEbcifTO5mqE6A7zX2F5ELTdccI00VJbiPKMVJFvYjL/d9GlS6dG44IjOYc0X/+zGBwDwHcZNUY6P00g7eo+EyORxFrJcqSODxCGyrEeuxt9YkzkhLBZmavgqr00is1SsKC9SAOTAykBB6i1WYoX61RQ11PMSQd/14QF7LuPh60jCN5ZsvRw7EOcq5uEsCGVvvJHkj1GqnoV5VFPjbxPvNLl02Y+2weLvqQCA+6vxLUZOTgb3FyQXrEaWAh70YnYoXzg+MP5U/LS62+BYDatA8nX4i6cvE9P7xKjgyn0Ung5Dnz3k7aH2s+j8brzGVdHQ==",
+  "keyId": "psychometric-key-2026-v1",
+  "algorithm": "RSA-PSS-SHA256",
+  "issuedAt": "2026-10-22T16:43:00.959Z",
+  "signedAt": "2026-10-22T16:43:00.962Z",
+  "createdAt": "2026-10-22T16:43:00.971Z",
+  "updatedAt": "2026-10-22T16:43:00.971Z",
+  "__v": 0
+}

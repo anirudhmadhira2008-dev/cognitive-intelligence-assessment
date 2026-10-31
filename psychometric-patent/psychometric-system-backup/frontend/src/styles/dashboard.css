@@ -1,0 +1,700 @@
+/* ==========================================================================
+   STUDENT PERFORMANCE ANALYTICS & DASHBOARD STYLES
+   Modern Dark SaaS Theme (Charcoal / Navy / Indigo)
+   ========================================================================== */
+
+/* Main Page Container */
+.dashboard-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+  width: 100%;
+}
+
+/* Page Section Header */
+.perf-page-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #1e293b;
+}
+
+@media (min-width: 768px) {
+  .perf-page-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.perf-header-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.perf-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  background: rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  color: #818cf8;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  width: fit-content;
+}
+
+.perf-page-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #f8fafc;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.perf-page-subtitle {
+  font-size: 14px;
+  color: #94a3b8;
+  max-width: 680px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.perf-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.perf-count-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: #161f30;
+  border: 1px solid #222f46;
+  border-radius: 8px;
+  color: #cbd5e1;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.perf-refresh-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  color: #f1f5f9;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.perf-refresh-btn:hover {
+  background: #283548;
+  border-color: #6366f1;
+  color: #ffffff;
+}
+
+.perf-refresh-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   SUMMARY KPI METRIC CARDS
+   ========================================================================== */
+.perf-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+@media (min-width: 640px) {
+  .perf-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .perf-kpi-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.perf-kpi-card {
+  background: #111827;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 120px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.perf-kpi-card:hover {
+  border-color: #334155;
+  transform: translateY(-2px);
+}
+
+.perf-kpi-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.perf-kpi-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #94a3b8;
+}
+
+.perf-kpi-icon-wrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1a2234;
+  color: #818cf8;
+}
+
+.perf-kpi-value-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.perf-kpi-number {
+  font-size: 28px;
+  font-weight: 800;
+  color: #f8fafc;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.perf-kpi-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 9999px;
+}
+
+.perf-kpi-badge.positive {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.perf-kpi-badge.negative {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.perf-kpi-badge.neutral {
+  background: #1e293b;
+  color: #94a3b8;
+  border: 1px solid #334155;
+}
+
+.perf-kpi-subtext {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 6px;
+}
+
+/* ==========================================================================
+   THREE HISTORICAL DIFFICULTY BAR CHARTS
+   ========================================================================== */
+.diff-charts-section {
+  margin-bottom: 32px;
+}
+
+.section-title-wrap {
+  margin-bottom: 16px;
+}
+
+.section-main-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0 0 4px 0;
+}
+
+.section-main-subtext {
+  font-size: 13px;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.diff-charts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .diff-charts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  .diff-charts-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.diff-chart-card {
+  background: #111827;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  position: relative;
+}
+
+.diff-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.diff-card-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.diff-tier-tag {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.diff-tier-tag.easy {
+  background: rgba(16, 185, 129, 0.12);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.diff-tier-tag.medium {
+  background: rgba(245, 158, 11, 0.12);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.diff-tier-tag.hard {
+  background: rgba(244, 63, 94, 0.12);
+  color: #f43f5e;
+  border: 1px solid rgba(244, 63, 94, 0.25);
+}
+
+.diff-points-tag {
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.diff-chart-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin: 0;
+}
+
+.diff-formula-note {
+  font-size: 11px;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.diff-formula-note code {
+  color: #cbd5e1;
+  background: #1a2333;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+/* Real SVG Bar Chart Container */
+.svg-bar-chart-container {
+  width: 100%;
+  height: 220px;
+  position: relative;
+  margin: 12px 0 8px;
+}
+
+.real-svg-chart {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Tooltip Overlay */
+.bar-chart-tooltip {
+  position: absolute;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 12px;
+  color: #f8fafc;
+  pointer-events: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  z-index: 20;
+  transform: translate(-50%, -100%);
+  margin-top: -8px;
+  white-space: nowrap;
+}
+
+.tooltip-title {
+  font-weight: 700;
+  color: #e2e8f0;
+  margin-bottom: 2px;
+}
+
+.tooltip-val {
+  font-weight: 800;
+  color: #818cf8;
+}
+
+.tooltip-meta {
+  font-size: 10px;
+  color: #94a3b8;
+}
+
+.diff-card-footer {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #1e293b;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #64748b;
+}
+
+/* ==========================================================================
+   COMPETENCY INSIGHTS SECTION (10 DOMAINS)
+   ========================================================================== */
+.competency-section {
+  background: #111827;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 32px;
+}
+
+.competency-header {
+  margin-bottom: 20px;
+}
+
+.competency-header h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0 0 6px 0;
+}
+
+.competency-header p {
+  font-size: 13px;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.competency-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .competency-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.competency-item-card {
+  background: #161f30;
+  border: 1px solid #222f46;
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.comp-item-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.comp-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.comp-score-badge {
+  font-size: 12px;
+  font-weight: 700;
+  color: #818cf8;
+}
+
+.comp-score-badge.na {
+  color: #64748b;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.comp-progress-track {
+  width: 100%;
+  height: 8px;
+  background: #0f172a;
+  border-radius: 9999px;
+  overflow: hidden;
+  border: 1px solid #1e293b;
+}
+
+.comp-progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%);
+  transition: width 0.6s ease;
+}
+
+.comp-item-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #64748b;
+}
+
+/* ==========================================================================
+   HISTORICAL ASSESSMENT DATA TABLE
+   ========================================================================== */
+.assessment-table-section {
+  margin-bottom: 32px;
+}
+
+.table-card-wrapper {
+  background: #111827;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.table-header-bar {
+  padding: 18px 24px;
+  border-bottom: 1px solid #1e293b;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.table-header-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0;
+}
+
+.table-responsive-box {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.saas-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  min-width: 720px;
+}
+
+.saas-data-table th {
+  background: #0d131f;
+  color: #94a3b8;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 12px 20px;
+  border-bottom: 1px solid #1e293b;
+}
+
+.saas-data-table td {
+  padding: 14px 20px;
+  font-size: 13px;
+  color: #cbd5e1;
+  border-bottom: 1px solid #1e293b;
+}
+
+.saas-data-table tbody tr:hover {
+  background: #151d2d;
+}
+
+.table-score-pill {
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.table-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  background: rgba(16, 185, 129, 0.12);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.table-action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #818cf8;
+  font-weight: 600;
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: #1a2234;
+  border: 1px solid #28354c;
+  transition: all 0.2s ease;
+}
+
+.table-action-link:hover {
+  background: #253147;
+  color: #ffffff;
+  border-color: #6366f1;
+}
+
+/* ==========================================================================
+   TRENDS & QUALITATIVE INSIGHTS GRID
+   ========================================================================== */
+.trends-insights-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+@media (min-width: 840px) {
+  .trends-insights-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.trend-box-card {
+  background: #111827;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.trend-box-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin-bottom: 12px;
+}
+
+.trend-desc-banner {
+  background: #161f30;
+  border: 1px solid #222f46;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: #e2e8f0;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.trend-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.trend-list li {
+  font-size: 12px;
+  color: #94a3b8;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.trend-list-icon-up {
+  color: #10b981;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.trend-list-icon-down {
+  color: #f43f5e;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.qualitative-feedback-body {
+  background: #161f30;
+  border: 1px solid #222f46;
+  border-radius: 8px;
+  padding: 14px;
+  font-size: 13px;
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+.boundary-note {
+  font-size: 11px;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+}

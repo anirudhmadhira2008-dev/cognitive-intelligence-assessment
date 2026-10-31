@@ -1,0 +1,12 @@
+{
+  "name": "psychometric-patent-platform",
+  "version": "2.0.0",
+  "description": "Multimodal Psychometric AI Assessment Platform Launcher",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "cmd /c run.bat",
+    "dev:backend": "cd psychometric-patent/psychometric-system-backup/backend && npm run dev",
+    "dev:frontend": "cd psychometric-patent/psychometric-system-backup/frontend && npm run dev"
+  }
+}
